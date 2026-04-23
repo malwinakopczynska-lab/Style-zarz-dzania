@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jakim Szefem Jesteś? Style Golemana</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4ff;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: #e4e2f8;
+  --a1: #e8c547;
+  --a2: #6c5ce7;
+  --a3: #fd7979;
+  --a4: #00cec9;
+  --a5: #f7a76c;
+  --a6: #55efc4;
+  --text: #1a1a2e;
+  --muted: #6b6b8a;
+  --light: #f0eeff;
+  --r: 14px;
+  --shadow: 0 2px 16px rgba(108,92,231,.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* ── TOP NAV TABS ─────────────────────────────────────────────────────────── */
+.topnav {
+  background: #fff;
+  border-bottom: 1.5px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(108,92,231,.07);
+}
+.topnav-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center; gap: 0;
+  padding: 0 24px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--a2); padding: 16px 20px 16px 0;
+  border-right: 1.5px solid var(--border);
+  margin-right: 8px; white-space: nowrap;
+}
+.tab-btn {
+  padding: 16px 18px; border: none; background: transparent;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  color: var(--muted); cursor: pointer; border-bottom: 2.5px solid transparent;
+  transition: all .2s; white-space: nowrap;
+}
+.tab-btn:hover { color: var(--a2); }
+.tab-btn.active { color: var(--a2); border-bottom-color: var(--a2); font-weight: 600; }
+
+/* ── PAGES ────────────────────────────────────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 36px 24px 80px; }
+
+/* ── HERO ─────────────────────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+  border-radius: 20px; padding: 44px 40px; margin-bottom: 28px;
+  color: #fff; text-align: center;
+  box-shadow: 0 8px 32px rgba(108,92,231,.25);
+}
+.hero .badge {
+  display: inline-block; background: rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.4); color: #fff;
+  font-size: 10px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; padding: 5px 16px; border-radius: 100px; margin-bottom: 16px;
+}
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px,5vw,42px); line-height: 1.15; margin-bottom: 12px; }
+.hero h1 span { color: #ffd32a; }
+.hero p { font-size: 15px; opacity: .88; line-height: 1.6; max-width: 520px; margin: 0 auto; }
+
+/* ── PROGRESS ─────────────────────────────────────────────────────────────── */
+.prog-wrap { margin-bottom: 24px; }
+.prog-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.prog-bg { height: 5px; background: var(--border); border-radius: 100px; overflow: hidden; }
+.prog-fill { height: 100%; background: linear-gradient(90deg, var(--a2), #a29bfe); border-radius: 100px; transition: width .5s ease; }
+
+/* ── SCENARIO CARD ────────────────────────────────────────────────────────── */
+.scard {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: 28px; margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.snum { font-size: 10px; color: var(--a2); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.stitle { font-family: 'Playfair Display', serif; font-size: clamp(16px,2.5vw,20px); font-weight: 700; line-height: 1.3; margin-bottom: 14px; }
+.context-box {
+  background: #f0eeff; border-left: 3px solid var(--a2);
+  border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 22px;
+}
+.context-box .ctx-label { font-size: 10px; font-weight: 700; color: var(--a2); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+.context-box p { font-size: 14px; color: var(--text); line-height: 1.65; }
+
+/* ── SLIDERS ──────────────────────────────────────────────────────────────── */
+.sliders { display: flex; flex-direction: column; gap: 18px; }
+.slider-row { background: #fafafe; border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+.slider-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.style-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 3px 10px; border-radius: 100px; font-size: 10px; font-weight: 700;
+  color: #fff; white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+}
+.slider-text { font-size: 13.5px; color: var(--text); line-height: 1.55; }
+.slider-controls { display: flex; align-items: center; gap: 10px; }
+.slider-end-l, .slider-end-r { font-size: 10px; color: var(--muted); white-space: nowrap; }
+.slider-end-r { text-align: right; }
+input[type=range] {
+  flex: 1; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 100px;
+  background: var(--border); outline: none; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 20px; height: 20px;
+  border-radius: 50%; background: var(--a2); cursor: pointer;
+  box-shadow: 0 2px 8px rgba(108,92,231,.35); transition: all .2s;
+}
+input[type=range]::-webkit-slider-thumb:hover { background: #5a4bd1; transform: scale(1.1); }
+input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--a2); border: none; }
+.slider-val-badge {
+  background: var(--a2); color: #fff; font-size: 12px; font-weight: 700;
+  width: 28px; height: 28px; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────────────────────── */
+.nav-row { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; }
+.btn { padding: 13px 30px; border-radius: 100px; border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.btn-sec { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
+.btn-sec:hover { border-color: var(--a2); color: var(--a2); }
+.btn-pri { background: linear-gradient(135deg, var(--a2), #a29bfe); color: #fff; box-shadow: 0 4px 16px rgba(108,92,231,.3); }
+.btn-pri:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,92,231,.4); }
+.btn-pri:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.btn-gold { background: linear-gradient(135deg, #e8c547, #f0a500); color: #1a1a2e; font-weight: 700; flex: 1; }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232,197,71,.4); }
+.btn-out { background: #fff; border: 1.5px solid var(--border); color: var(--text); flex: 1; }
+.btn-out:hover { border-color: var(--a2); color: var(--a2); }
+
+/* ── RESULT ───────────────────────────────────────────────────────────────── */
+#result { display: none; }
+.res-hero {
+  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+  border-radius: 20px; padding: 36px 32px; text-align: center; margin-bottom: 20px;
+  color: #fff; box-shadow: 0 8px 32px rgba(108,92,231,.25);
+}
+.res-icon { font-size: 56px; display: block; margin-bottom: 10px; }
+.res-badge { display: inline-block; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.4); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 10px; }
+.res-name { font-family: 'Playfair Display', serif; font-size: clamp(24px,5vw,38px); font-weight: 900; }
+.rcard { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 24px 26px; margin-bottom: 14px; box-shadow: var(--shadow); }
+.rcard h3 { font-size: 14px; font-weight: 700; color: var(--a2); margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+.rcard p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.when-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.when-item { background: var(--light); border-radius: 10px; padding: 10px 13px; font-size: 13px; color: var(--text); display: flex; gap: 8px; line-height: 1.5; }
+.wdot { width: 7px; height: 7px; min-width: 7px; border-radius: 50%; margin-top: 4px; }
+.bar-rows { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.brow { display: flex; align-items: center; gap: 12px; }
+.blabel { font-size: 12px; color: var(--muted); min-width: 170px; }
+.bbg { flex: 1; height: 8px; background: var(--border); border-radius: 100px; overflow: hidden; }
+.bfill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1) .3s; }
+.bpct { font-size: 12px; color: var(--muted); min-width: 34px; text-align: right; }
+
+/* ── KNOWLEDGE PAGE ───────────────────────────────────────────────────────── */
+.k-intro { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 22px 24px; margin-bottom: 24px; box-shadow: var(--shadow); }
+.k-intro h2 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 8px; }
+.k-intro p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+.style-card {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--r); margin-bottom: 16px;
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.style-card-header {
+  padding: 18px 22px; display: flex; align-items: center; gap: 14px;
+  cursor: pointer; user-select: none;
+}
+.style-card-header:hover { filter: brightness(.97); }
+.style-icon-big { font-size: 28px; flex-shrink: 0; }
+.style-header-text { flex: 1; }
+.style-header-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+.style-header-tag { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.style-chevron { font-size: 18px; color: var(--muted); transition: transform .3s; }
+.style-chevron.open { transform: rotate(180deg); }
+
+.style-card-body { display: none; padding: 0 22px 22px; border-top: 1px solid var(--border); }
+.style-card-body.open { display: block; }
+.style-section { margin-top: 16px; }
+.style-section-title { font-size: 11px; font-weight: 700; color: var(--a2); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.style-body-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.style-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.style-tag { background: var(--light); border-radius: 100px; padding: 5px 13px; font-size: 12px; color: var(--a2); font-weight: 500; }
+.style-watch-box { background: #fff8e6; border: 1px solid #f0d060; border-radius: 10px; padding: 12px 14px; margin-top: 8px; font-size: 13px; color: #7a5c00; line-height: 1.6; }
+.style-quote { background: var(--light); border-left: 3px solid var(--a2); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-top: 8px; font-style: italic; font-size: 14px; color: var(--text); line-height: 1.6; }
+
+/* ── BLANCHARD COMPARE ────────────────────────────────────────────────────── */
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+.compare-table th { background: var(--a2); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+.compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+.compare-table tr:nth-child(even) td { background: var(--light); }
+
+/* ── TOAST ────────────────────────────────────────────────────────────────── */
+.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(16px); background: var(--a2); color: #fff; font-size: 13px; font-weight: 600; padding: 12px 24px; border-radius: 100px; opacity: 0; transition: all .3s; pointer-events: none; z-index: 999; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media(max-width:560px) {
+  .when-grid { grid-template-columns: 1fr; }
+  .nav-row { flex-direction: column; }
+  .blabel { min-width: 120px; font-size: 11px; }
+  .hero { padding: 28px 20px; }
+  .topnav-inner { overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="nav-logo">Style Golemana</div>
+    <button class="tab-btn active" onclick="showPage('test')">&#9998; Test</button>
+    <button class="tab-btn" onclick="showPage('wiedza')">&#128218; Wiedza</button>
+    <button class="tab-btn" onclick="showPage('porownanie')">&#128200; Porównanie</button>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE: TEST ══════════ -->
+<div id="page-test" class="page active">
+<div class="wrap">
+
+  <div class="hero">
+    <div class="badge">Diagnoza stylu przywództwa</div>
+    <h1>Jakim <span>Szefem</span> Jesteś?</h1>
+    <p>6 scenariuszy z życia lidera. Oceń na skali 1–7 jak bardzo każda reakcja pasuje do Twojego naturalnego stylu działania.</p>
+  </div>
+
+  <div id="quiz">
+    <div class="prog-wrap">
+      <div class="prog-meta"><span id="pcounter">Scenariusz 1 z 6</span><span id="ppct">0%</span></div>
+      <div class="prog-bg"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
+    </div>
+    <div id="scenario-area"></div>
+    <div class="nav-row">
+      <button class="btn btn-sec" id="btnPrev" onclick="prev()" style="display:none">&#8592; Wstecz</button>
+      <button class="btn btn-pri" id="btnNext" onclick="next()">Dalej &#8594;</button>
+    </div>
+  </div>
+
+  <div id="result">
+    <div class="res-hero">
+      <span class="res-icon" id="ricon"></span>
+      <div class="res-badge" id="rtag"></div>
+      <div class="res-name" id="rname"></div>
+    </div>
+    <div class="rcard"><h3>&#128203; Twój dominujący styl</h3><p id="rdesc"></p></div>
+    <div class="rcard"><h3>&#9200; Kiedy ten styl działa najlepiej?</h3><div class="when-grid" id="rwhen"></div></div>
+    <div class="rcard"><h3>&#9888;&#65039; Na co uważać?</h3><p id="rwatch"></p></div>
+    <div class="rcard"><h3>&#128202; Twoja mapa stylów Golemana</h3><div class="bar-rows" id="rbars"></div></div>
+    <div class="nav-row" style="margin-top:24px">
+      <button class="btn btn-out" onclick="restart()">&#8617; Zacznij od nowa</button>
+      <button class="btn btn-gold" onclick="shareLink()">&#128279; Udostępnij test</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ PAGE: WIEDZA ══════════ -->
+<div id="page-wiedza" class="page">
+<div class="wrap">
+  <div class="k-intro">
+    <h2>&#127891; 6 Stylów Przywództwa według Golemana</h2>
+    <p>Daniel Goleman zidentyfikował 6 stylów przywódczych opartych na inteligencji emocjonalnej. Żaden styl nie jest z natury lepszy – skuteczny lider potrafi świadomie przełączać się między nimi zależnie od sytuacji, osoby i kontekstu.</p>
+  </div>
+
+  <!-- WIZJONERSKI -->
+  <div class="style-card">
+    <div class="style-card-header" style="background:#f0eeff" onclick="toggleCard('w1')">
+      <span class="style-icon-big">&#9889;</span>
+      <div class="style-header-text">
+        <div class="style-header-name" style="color:#6c5ce7">Wizjonerski (Authoritative)</div>
+        <div class="style-header-tag">„Chodźcie za mną" · Wysoka dyrektywa + wysoka autonomia</div>
+      </div>
+      <span class="style-chevron" id="chev-w1">&#8964;</span>
+    </div>
+    <div class="style-card-body" id="body-w1">
+      <div class="style-section">
+        <div class="style-section-title">Na czym polega?</div>
+        <div class="style-quote">„Oto gdzie zmierzamy i dlaczego to ważne. Jak tam dotrzemy – to już Wasza decyzja."</div>
+        <p class="style-body-text" style="margin-top:10px">Lider wizjonerski inspiruje przez cel i sens. Wyznacza kierunek strategiczny, tłumaczy „dlaczego" – ale daje ludziom swobodę w wyborze drogi. To styl, który łączy silne przywództwo z szacunkiem dla autonomii pracowników.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Kiedy stosować?</div>
+        <div class="style-tags">
+          <span class="style-tag">Brak kierunku w zespole</span>
+          <span class="style-tag">Zmiana organizacyjna</span>
+          <span class="style-tag">Nowy projekt strategiczny</span>
+          <span class="style-tag">Niska motywacja – brak sensu</span>
+        </div>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Wpływ na klimat zespołu</div>
+        <p class="style-body-text">Badania Golemana pokazują, że styl wizjonerski ma <strong>najsilniejszy pozytywny wpływ</strong> na klimat organizacyjny spośród wszystkich 6 stylów. Ludzie wiedzą po co wstają rano – i to robi ogromną różnicę.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Na co uważać?</div>
+        <div class="style-watch-box">⚠️ Styl wizjonerski traci skuteczność, gdy lider jest oderwany od codziennych realiów zespołu. Wizja motywuje – ale bez konkretnych kroków i wsparcia operacyjnego może frustrować.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNERSKI -->
+  <div class="style-card">
+    <div class="style-card-header" style="background:#fff0f0" onclick="toggleCard('w2')">
+      <span class="style-icon-big">&#10084;&#65039;</span>
+      <div class="style-header-text">
+        <div class="style-header-name" style="color:#fd7979">Partnerski (Affiliative)</div>
+        <div class="style-header-tag">„Ludzie na pierwszym miejscu" · Relacje ponad wyniki</div>
+      </div>
+      <span class="style-chevron" id="chev-w2">&#8964;</span>
+    </div>
+    <div class="style-card-body" id="body-w2">
+      <div class="style-section">
+        <div class="style-section-title">Na czym polega?</div>
+        <div class="style-quote">„Najważniejsze są relacje i harmonia w zespole. Zadanie można poprawić – zaufania nie odbudujesz z dnia na dzień."</div>
+        <p class="style-body-text" style="margin-top:10px">Lider partnerski stawia potrzeby emocjonalne przed zadaniami. Buduje silne więzi, dba o dobrostan i atmosferę. W trudnych momentach jest ostoją dla zespołu.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Kiedy stosować?</div>
+        <div class="style-tags">
+          <span class="style-tag">Konflikty i napięcia</span>
+          <span class="style-tag">Odbudowanie zaufania</span>
+          <span class="style-tag">Kryzys emocjonalny w zespole</span>
+          <span class="style-tag">Wdrożenie nowej osoby</span>
+        </div>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Wpływ na klimat zespołu</div>
+        <p class="style-body-text">Tworzy silne poczucie bezpieczeństwa i lojalności. Pracownicy partnerskiego lidera rzadziej odchodzą i chętniej angażują się ponad obowiązki. Słabe wyniki tolerowane zbyt długo – to główne ryzyko.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Na co uważać?</div>
+        <div class="style-watch-box">⚠️ Skupienie na harmonii może prowadzić do unikania trudnych rozmów i tolerowania słabych wyników. Lider partnerski musi umieć też dać bezpośredni, szczery feedback.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMOKRATYCZNY -->
+  <div class="style-card">
+    <div class="style-card-header" style="background:#edfffe" onclick="toggleCard('w3')">
+      <span class="style-icon-big">&#128483;&#65039;</span>
+      <div class="style-header-text">
+        <div class="style-header-name" style="color:#00cec9">Demokratyczny (Democratic)</div>
+        <div class="style-header-tag">„Co Ty o tym sądzisz?" · Konsensus i współwłasność</div>
+      </div>
+      <span class="style-chevron" id="chev-w3">&#8964;</span>
+    </div>
+    <div class="style-card-body" id="body-w3">
+      <div class="style-section">
+        <div class="style-section-title">Na czym polega?</div>
+        <div class="style-quote">„Zanim podejmę decyzję – chcę poznać Wasze zdanie. Razem znajdziemy lepsze rozwiązanie."</div>
+        <p class="style-body-text" style="margin-top:10px">Lider demokratyczny angażuje zespół w podejmowanie decyzji. Zbiera opinie, organizuje dyskusje, szuka konsensusu. Dzięki temu ludzie czują się odpowiedzialni za wyniki – bo sami współtworzyli plan.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Kiedy stosować?</div>
+        <div class="style-tags">
+          <span class="style-tag">Decyzje wymagające akceptacji</span>
+          <span class="style-tag">Zbieranie pomysłów i innowacji</span>
+          <span class="style-tag">Budowanie zaangażowania</span>
+          <span class="style-tag">Zespół ekspertów</span>
+        </div>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Wpływ na klimat zespołu</div>
+        <p class="style-body-text">Buduje silne poczucie wpływu i współwłasności. Pracownicy są bardziej zaangażowani, gdy sami współtworzą kierunek. Styl szczególnie skuteczny w zespołach wiedzy i kreatywnych branżach.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Na co uważać?</div>
+        <div class="style-watch-box">⚠️ W sytuacji kryzysowej lub przy braku wiedzy w zespole – demokratyczne konsultacje mogą być stratą czasu. Lider musi wiedzieć kiedy zakończyć dyskusję i podjąć decyzję samodzielnie.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COACHINGOWY -->
+  <div class="style-card">
+    <div class="style-card-header" style="background:#effffa" onclick="toggleCard('w4')">
+      <span class="style-icon-big">&#127807;</span>
+      <div class="style-header-text">
+        <div class="style-header-name" style="color:#00b894">Coachingowy (Coaching)</div>
+        <div class="style-header-tag">„Spróbuj tego" · Długofalowy rozwój</div>
+      </div>
+      <span class="style-chevron" id="chev-w4">&#8964;</span>
+    </div>
+    <div class="style-card-body" id="body-w4">
+      <div class="style-section">
+        <div class="style-section-title">Na czym polega?</div>
+        <div class="style-quote">„Co Ty o tym myślisz? Jak sam/a to widzisz? Czego potrzebujesz, żeby to osiągnąć?"</div>
+        <p class="style-body-text" style="margin-top:10px">Lider coachingowy inwestuje czas w indywidualny rozwój każdej osoby. Zadaje pytania zamiast dawać odpowiedzi. Cel to nie tylko wynik – ale wzrost kompetencji i pewności siebie pracownika.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Kiedy stosować?</div>
+        <div class="style-tags">
+          <span class="style-tag">Pracownik chce się rozwijać</span>
+          <span class="style-tag">Przygotowanie do awansu</span>
+          <span class="style-tag">Zwiększanie samodzielności</span>
+          <span class="style-tag">Onboarding z potencjałem</span>
+        </div>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Wpływ na klimat zespołu</div>
+        <p class="style-body-text">Buduje silną lojalność i zaangażowanie długofalowe. Pracownicy czują, że lider naprawdę w nich wierzy. Efekty nie są natychmiastowe – ale trwałe. Goleman uważa ten styl za jeden z najrzadziej stosowanych mimo wysokiej skuteczności.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Na co uważać?</div>
+        <div class="style-watch-box">⚠️ Nie każda sytuacja wymaga coachingu. Przy pilnych zadaniach lub niskich kompetencjach pracownika – seria pytań może frustrować. Dostosuj styl do poziomu dojrzałości osoby.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NARZUCAJĄCY TEMPO -->
+  <div class="style-card">
+    <div class="style-card-header" style="background:#fff5ee" onclick="toggleCard('w5')">
+      <span class="style-icon-big">&#128293;</span>
+      <div class="style-header-text">
+        <div class="style-header-name" style="color:#e17055">Narzucający tempo (Pacesetting)</div>
+        <div class="style-header-tag">„Zrób to jak ja i teraz" · Wysokie standardy, szybkie wyniki</div>
+      </div>
+      <span class="style-chevron" id="chev-w5">&#8964;</span>
+    </div>
+    <div class="style-card-body" id="body-w5">
+      <div class="style-section">
+        <div class="style-section-title">Na czym polega?</div>
+        <div class="style-quote">„Obserwuj jak to robię. Teraz Twoja kolej – oczekuję tego samego poziomu."</div>
+        <p class="style-body-text" style="margin-top:10px">Lider narzucający tempo sam modeluje wysokie standardy i oczekuje ich od innych. Działa szybko, precyzyjnie i nie toleruje przeciętności. Świetny do krótkoterminowych sprintów z silnym zespołem.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Kiedy stosować?</div>
+        <div class="style-tags">
+          <span class="style-tag">Zespół ekspertów z motywacją</span>
+          <span class="style-tag">Krótkoterminowy sprint</span>
+          <span class="style-tag">Pilne wyniki</span>
+          <span class="style-tag">Demonstracja nowego standardu</span>
+        </div>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Wpływ na klimat zespołu</div>
+        <p class="style-body-text">Goleman wskazuje ten styl jako <strong>jeden z najbardziej szkodliwych</strong> dla długofalowego klimatu – gdy stosowany zbyt długo lub z nieodpowiednimi ludźmi. Ludzie czują się przytłoczeni, przestają zgłaszać problemy i wypalają się.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Na co uważać?</div>
+        <div class="style-watch-box">⚠️ Używaj tego stylu świadomie i krótkoterminowo. Stosowany na co dzień niszczy inicjatywę, motywację i zaufanie. Po sprincie wróć do stylu bardziej wspierającego.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DYREKTYWNY -->
+  <div class="style-card">
+    <div class="style-card-header" style="background:#fffbea" onclick="toggleCard('w6')">
+      <span class="style-icon-big">&#128737;&#65039;</span>
+      <div class="style-header-text">
+        <div class="style-header-name" style="color:#d4a017">Dyrektywny (Commanding)</div>
+        <div class="style-header-tag">„Zrób to, co mówię" · Kryzys i dyscyplina</div>
+      </div>
+      <span class="style-chevron" id="chev-w6">&#8964;</span>
+    </div>
+    <div class="style-card-body" id="body-w6">
+      <div class="style-section">
+        <div class="style-section-title">Na czym polega?</div>
+        <div class="style-quote">„Nie ma czasu na dyskusję. Oto co robimy, jak i kiedy. Pytania potem."</div>
+        <p class="style-body-text" style="margin-top:10px">Lider dyrektywny podejmuje decyzje szybko i oczekuje natychmiastowego wykonania. Bierze pełną kontrolę w sytuacjach kryzysowych. Skuteczny jako narzędzie awaryjne – destrukcyjny jako codzienna praktyka.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Kiedy stosować?</div>
+        <div class="style-tags">
+          <span class="style-tag">Kryzys – natychmiastowe działanie</span>
+          <span class="style-tag">Trudny pracownik</span>
+          <span class="style-tag">Restrukturyzacja</span>
+          <span class="style-tag">Zagrożenie bezpieczeństwa</span>
+        </div>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Wpływ na klimat zespołu</div>
+        <p class="style-body-text">Goleman wskazuje styl dyrektywny jako <strong>najbardziej negatywny</strong> dla klimatu organizacyjnego – gdy stosowany regularnie. Niszczy inicjatywę, kreatywność i motywację wewnętrzną. Ludzie wykonują – ale nie rozumieją dlaczego i przestają się angażować.</p>
+      </div>
+      <div class="style-section">
+        <div class="style-section-title">Na co uważać?</div>
+        <div class="style-watch-box">⚠️ Traktuj ten styl jak gaśnicę – niezbędna w pożarze, nie do codziennego użytku. Po kryzysie wróć jak najszybciej do stylów budujących relacje i zaangażowanie.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ PAGE: PORÓWNANIE ══════════ -->
+<div id="page-porownanie" class="page">
+<div class="wrap">
+
+  <div class="k-intro">
+    <h2>&#128200; Porównanie stylów – tabela</h2>
+    <p>Zestawienie wszystkich 6 stylów Golemana w jednym miejscu. Używaj tej tabeli podczas omawiania wyników z uczestnikami szkolenia.</p>
+  </div>
+
+  <div class="rcard">
+    <h3>&#128101; Style a klimat organizacyjny</h3>
+    <table class="compare-table">
+      <tr><th>Styl</th><th>Hasło przewodnie</th><th>Wpływ na klimat</th><th>Najlepiej dla</th></tr>
+      <tr><td>&#9889; Wizjonerski</td><td>Chodźcie za mną</td><td style="color:#00b894">&#9679; Bardzo pozytywny</td><td>Cały zespół – brak kierunku</td></tr>
+      <tr><td>&#10084; Partnerski</td><td>Ludzie na 1. miejscu</td><td style="color:#00b894">&#9679; Pozytywny</td><td>Kryzysy, konflikty, relacje</td></tr>
+      <tr><td>&#128483; Demokratyczny</td><td>Co Ty sądzisz?</td><td style="color:#00b894">&#9679; Pozytywny</td><td>Zbieranie opinii, decyzje</td></tr>
+      <tr><td>&#127807; Coachingowy</td><td>Spróbuj tego</td><td style="color:#00b894">&#9679; Pozytywny</td><td>Pracownicy z potencjałem</td></tr>
+      <tr><td>&#128293; Narzucający tempo</td><td>Zrób jak ja</td><td style="color:#e17055">&#9679; Negatywny</td><td>Eksperci – krótkoterminowo</td></tr>
+      <tr><td>&#128737; Dyrektywny</td><td>Zrób co mówię</td><td style="color:#e17055">&#9679; Bardzo negatywny</td><td>Kryzys – tylko awaryjnie</td></tr>
+    </table>
+  </div>
+
+  <div class="rcard">
+    <h3>&#128172; Dyrektywa vs. Wsparcie relacyjne</h3>
+    <table class="compare-table">
+      <tr><th>Styl</th><th>Dyrektywa zadaniowa</th><th>Wsparcie relacyjne</th></tr>
+      <tr><td>&#9889; Wizjonerski</td><td>Wysoka (cel i kierunek)</td><td>Średnie (autonomia w metodzie)</td></tr>
+      <tr><td>&#10084; Partnerski</td><td>Niska</td><td>Bardzo wysokie</td></tr>
+      <tr><td>&#128483; Demokratyczny</td><td>Niska (decyzja wspólna)</td><td>Wysokie</td></tr>
+      <tr><td>&#127807; Coachingowy</td><td>Niska (pytania)</td><td>Bardzo wysokie</td></tr>
+      <tr><td>&#128293; Narzucający tempo</td><td>Bardzo wysoka</td><td>Niskie</td></tr>
+      <tr><td>&#128737; Dyrektywny</td><td>Bardzo wysoka</td><td>Bardzo niskie</td></tr>
+    </table>
+  </div>
+
+  <div class="rcard">
+    <h3>&#127775; Złota zasada Golemana</h3>
+    <p style="font-size:15px; line-height:1.75">Badania Golemana wykazały, że <strong>najskuteczniejsi liderzy</strong> posługują się co najmniej <strong>4 stylami</strong> i potrafią elastycznie dobierać odpowiedni do sytuacji. Nie chodzi o „bycie inną osobą" – chodzi o świadomość narzędzi, które masz do dyspozycji, i wybieranie właściwego w danym momencie.</p>
+    <div style="margin-top:14px; padding:14px 16px; background:#f0eeff; border-radius:10px; font-size:14px; color:#6c5ce7; font-weight:600">
+      💡 Styl to nie charakter – to narzędzie. Charakter jest jeden, narzędzi może być wiele.
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="toast" id="toast">Link skopiowany! &#128203;</div>
+
+<script>
+// ── PAGE SWITCHING ────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('page-' + id).classList.add('active');
+  var map = {test:0, wiedza:1, porownanie:2};
+  document.querySelectorAll('.tab-btn')[map[id]].classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── ACCORDION ─────────────────────────────────────────────────────────────
+function toggleCard(id) {
+  var body = document.getElementById('body-' + id);
+  var chev = document.getElementById('chev-' + id);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+// ── QUIZ DATA ─────────────────────────────────────────────────────────────
+var SCENARIOS = [
+  {
+    num:"SCENARIUSZ 01", title:"Zespół traci kierunek",
+    context:"Twój zespół od kilku tygodni pracuje bez wyraźnego celu. Projekty się przeciągają, ludzie nie wiedzą co jest priorytetem. Na spotkaniu panuje chaos.",
+    reactions:[
+      {style:"W", color:"#6c5ce7", text:"Zatrzymuję spotkanie i maluję szerszy obraz – dokąd zmierzamy jako zespół i dlaczego to ważne. Łączę codzienne zadania z większym celem."},
+      {style:"P", color:"#fd7979", text:"Pytam każdego jak się czuje w tej sytuacji. Zależy mi, żeby wszyscy poczuli się wysłuchani zanim przejdziemy do rozwiązań."},
+      {style:"D", color:"#00cec9", text:"Proponuję, żebyśmy wspólnie ustalili priorytety. Organizuję burzę mózgów i głosowanie nad najważniejszymi celami."},
+      {style:"C", color:"#00b894", text:"Rozmawiam z każdym indywidualnie – pytam co blokuje i jak mogę pomóc. Traktuję to jako okazję do rozmowy o rozwoju."}
+    ]
+  },
+  {
+    num:"SCENARIUSZ 02", title:"Konflikt w zespole",
+    context:"Dwie kluczowe osoby otwarcie się kłócą podczas spotkania projektowego. Atmosfera jest napięta, reszta milczy.",
+    reactions:[
+      {style:"P", color:"#fd7979", text:"Przerywam spotkanie i rozmawiam z każdą stroną osobno. Priorytet to odbudowanie relacji i dobra atmosfera w zespole."},
+      {style:"Dy", color:"#d4a017", text:"Mówię wprost: to nie jest czas i miejsce na ten spór. Ustalamy zasady i wracamy do tematu. Oczekuję profesjonalizmu."},
+      {style:"D", color:"#00cec9", text:"Daję obu stronom przestrzeń do wypowiedzi przed całym zespołem i razem szukamy wspólnego mianownika."},
+      {style:"C", color:"#00b894", text:"Pytam obie osoby o źródło napięcia. Traktuję to jako okazję do rozmowy o współpracy i wzajemnych oczekiwaniach."}
+    ]
+  },
+  {
+    num:"SCENARIUSZ 03", title:"Nowy, ambitny pracownik",
+    context:"Do zespołu dołączyła zdolna osoba, która szybko się nudzi rutynowymi zadaniami i zgłasza chęć większej odpowiedzialności.",
+    reactions:[
+      {style:"C", color:"#00b894", text:"Spotykam się z nią regularnie, rozmawiam o jej celach zawodowych i razem planujemy ścieżkę rozwoju w firmie."},
+      {style:"W", color:"#6c5ce7", text:"Włączam ją w strategiczne rozmowy. Pokazuję jak jej praca wpisuje się w większy cel i jaką rolę może odegrać."},
+      {style:"N", color:"#e17055", text:"Daję jej wymagające zadania i obserwuję wyniki. Kto chce więcej – musi to udowodnić wynikami."},
+      {style:"D", color:"#00cec9", text:"Pytam cały zespół jak moglibyśmy lepiej wykorzystać jej potencjał. Decyzja powinna być wspólna."}
+    ]
+  },
+  {
+    num:"SCENARIUSZ 04", title:"Kryzys – projekt się sypie",
+    context:"Tydzień przed ważnym deadline'em projekt jest daleko w tyle. Klient jest niecierpliwy, zespół zestresowany.",
+    reactions:[
+      {style:"Dy", color:"#d4a017", text:"Przejmuję kontrolę. Wyznaczam konkretne zadania każdej osobie, ustalamy dzienny plan i ja pilnuję realizacji."},
+      {style:"N", color:"#e17055", text:"Sam/a zaczynam pracować intensywniej i oczekuję tego samego od zespołu. Pokazuję co i jak szybko można zrobić."},
+      {style:"P", color:"#fd7979", text:"Zbieram zespół, mówię szczerze o sytuacji i pytam jak mogę pomóc każdej osobie. Ważne żeby czuli wsparcie."},
+      {style:"W", color:"#6c5ce7", text:"Przypominam dlaczego ten projekt jest ważny i co osiągniemy gdy go skończymy. Motywuję przez cel, nie przez strach."}
+    ]
+  },
+  {
+    num:"SCENARIUSZ 05", title:"Ważna decyzja strategiczna",
+    context:"Firma stoi przed ważną decyzją – zmiana modelu pracy. Zdania w zespole są podzielone, każdy ma inne potrzeby.",
+    reactions:[
+      {style:"D", color:"#00cec9", text:"Organizuję anonimową ankietę i spotkanie z całym zespołem. Decyzja powinna uwzględniać głos każdego."},
+      {style:"W", color:"#6c5ce7", text:"Tłumaczę jaką wizję firmy realizujemy. Decyzja wynika z kierunku strategicznego, nie głosowania."},
+      {style:"Dy", color:"#d4a017", text:"Podejmuję decyzję samodzielnie na podstawie danych i informuję zespół. Dyskusja nie powinna trwać w nieskończoność."},
+      {style:"C", color:"#00b894", text:"Rozmawiam z każdym indywidualnie o jego sytuacji i potrzebach. Szukam rozwiązania wspierającego każdą osobę."}
+    ]
+  },
+  {
+    num:"SCENARIUSZ 06", title:"Spada jakość pracy",
+    context:"Doświadczony pracownik oddaje ostatnio prace znacznie poniżej swoich możliwości. Reszta zespołu też to widzi.",
+    reactions:[
+      {style:"C", color:"#00b894", text:"Proszę tę osobę na rozmowę. Pytam co się dzieje i jak mogę pomóc jej odzyskać formę."},
+      {style:"N", color:"#e17055", text:"Daję bezpośredni feedback z konkretnymi przykładami. Oczekuję wyraźnej poprawy w określonym czasie."},
+      {style:"P", color:"#fd7979", text:"Sprawdzam najpierw czy wszystko w porządku na poziomie ludzkim – może coś się dzieje w życiu tej osoby."},
+      {style:"Dy", color:"#d4a017", text:"Mówię wprost: widzę spadek jakości, podaję przykłady i oczekuję konkretnych działań naprawczych w ciągu tygodnia."}
+    ]
+  }
+];
+
+var STYLES = {
+  W:  {name:"Wizjonerski (Authoritative)", icon:"&#9889;",    color:"#6c5ce7", desc:"Inspirujesz przez cel i kierunek. Twój naturalny język to: chodźcie za mną – pokazujesz ludziom dokąd zmierzają i dlaczego to ważne. Potrafisz nadać sens nawet trudnym zadaniom i połączyć codzienną pracę z większą misją. To jeden z najskuteczniejszych stylów według badań Golemana.", when:["Zespół potrzebuje kierunku i wizji","Zmiana organizacyjna lub nowy projekt","Niska motywacja – ludzie nie widzą sensu","Firma na rozdrożu strategicznym"], watch:"Uważaj, żeby nie być zbyt odległym od codziennych realiów. Wizja motywuje, ale ludzie potrzebują też konkretnych kroków i wsparcia operacyjnego."},
+  P:  {name:"Partnerski (Affiliative)",     icon:"&#10084;",  color:"#fd7979", desc:"Stawiasz ludzi na pierwszym miejscu. Budujesz zaufanie, dbasz o atmosferę i relacje. W kryzysach emocjonalnych Twój zespół wie, że może na Ciebie liczyć. Twoja siła to lojalność ludzi i harmonia w grupie – a to bezcenne w trudnych momentach.", when:["Konflikty i napięcia w zespole","Odbudowanie zaufania po trudnym okresie","Motywowanie w czasie stresu","Integracja nowych osób"], watch:"Nadmierne skupienie na harmonii może prowadzić do unikania trudnych rozmów. Czasem pracownik potrzebuje szczerego feedbacku, a nie tylko ciepłego słowa."},
+  D:  {name:"Demokratyczny (Democratic)",   icon:"&#128483;", color:"#00cec9", desc:"Wierzysz w siłę wspólnych decyzji. Angażujesz zespół, pytasz o zdanie i budujesz poczucie współwłasności. Twoi pracownicy czują, że ich głos ma znaczenie – i dzięki temu są bardziej zaangażowani w realizację celów.", when:["Ważne decyzje wymagające akceptacji","Budowanie zaangażowania i poczucia wpływu","Zbieranie pomysłów i innowacji","Zespół ekspertów z dużą wiedzą"], watch:"Demokratyczne podejście może spowalniać działanie w kryzysie. Kiedy liczy się czas – lider musi czasem podjąć decyzję sam bez długich konsultacji."},
+  C:  {name:"Coachingowy (Coaching)",        icon:"&#127807;", color:"#00b894", desc:"Inwestujesz w ludzi długofalowo. Zadajesz pytania, słuchasz i pomagasz pracownikom samodzielnie znajdować odpowiedzi. Twoim celem jest ich rozwój – nie tylko dobry wynik tu i teraz. Goleman uważa ten styl za jeden z najrzadziej stosowanych, mimo że przynosi trwałe efekty.", when:["Pracownicy chcą się rozwijać","Onboarding i wdrażanie nowych osób","Przygotowanie do awansu","Zwiększanie samodzielności zespołu"], watch:"Coachingowe podejście wymaga czasu. W sytuacjach kryzysowych lub z niedoświadczonymi osobami może być mniej skuteczne niż jasna, konkretna instrukcja."},
+  N:  {name:"Narzucający tempo (Pacesetting)",icon:"&#128293;",color:"#e17055", desc:"Oczekujesz wysokich standardów i sam/a je modelujesz. Działasz szybko i skutecznie – i oczekujesz tego samego od innych. Zespół z Tobą osiąga wyniki, ale tylko jeśli ludzie są wystarczająco silni, by dotrzymać Ci kroku przez dłuższy czas.", when:["Zespół ekspertów z wysoką motywacją","Krótkoterminowy sprint","Pokazanie nowego standardu przez przykład","Projekt wymagający szybkich wyników"], watch:"To styl o najwyższym ryzyku wypalenia. Stosowany zbyt długo lub z niedoświadczonymi osobami – demotywuje i niszczy inicjatywę. Używaj świadomie i krótkoterminowo."},
+  Dy: {name:"Dyrektywny (Commanding)",       icon:"&#128737;", color:"#d4a017", desc:"Działasz zdecydowanie i oczekujesz wykonania. Twoja siła to szybkość reakcji w kryzysie i jasność oczekiwań. Traktujesz ten styl jak narzędzie awaryjne – skuteczne w nagłych sytuacjach, kiedy nie ma czasu na konsultacje.", when:["Kryzys wymagający natychmiastowej decyzji","Pracownik z trudnymi zachowaniami","Restrukturyzacja i niepopularne zmiany","Zagrożenie bezpieczeństwa lub poważne ryzyko"], watch:"Dyrektywny styl stosowany na co dzień niszczy motywację i inicjatywę zespołu. Traktuj go jak gaśnicę – niezbędną w pożarze, nie do codziennego użytku."}
+};
+
+var SKEYS = ["W","P","D","C","N","Dy"];
+var sliderData = {};
+var cur = 0;
+var TOTAL = SCENARIOS.length;
+
+function renderScenario() {
+  var s = SCENARIOS[cur];
+  document.getElementById("pcounter").textContent = "Scenariusz " + (cur+1) + " z " + TOTAL;
+  var pct = Math.round(cur / TOTAL * 100);
+  document.getElementById("ppct").textContent = pct + "%";
+  document.getElementById("pfill").style.width = pct + "%";
+  document.getElementById("btnPrev").style.display = cur > 0 ? "inline-flex" : "none";
+  document.getElementById("btnNext").textContent = cur === TOTAL - 1 ? "Zobacz wynik!" : "Dalej \u2192";
+
+  var html = '<div class="scard">';
+  html += '<div class="snum">' + s.num + '</div>';
+  html += '<div class="stitle">' + s.title + '</div>';
+  html += '<div class="context-box"><div class="ctx-label">Sytuacja</div><p>' + s.context + '</p></div>';
+  html += '<div class="sliders">';
+
+  for (var i = 0; i < s.reactions.length; i++) {
+    var r = s.reactions[i];
+    var sid = "sl_" + cur + "_" + i;
+    var val = sliderData[sid] !== undefined ? sliderData[sid] : 4;
+    html += '<div class="slider-row">';
+    html += '<div class="slider-top">';
+    html += '<span class="style-pill" style="background:' + r.color + '">' + r.style + '</span>';
+    html += '<span class="slider-text">' + r.text + '</span>';
+    html += '</div>';
+    html += '<div class="slider-controls">';
+    html += '<span class="slider-end-l">Zupełnie nie ja</span>';
+    html += '<input type="range" min="1" max="7" value="' + val + '" id="' + sid + '" data-sid="' + sid + '" oninput="updateSlider(this)">';
+    html += '<span class="slider-end-r">Zdecydowanie ja</span>';
+    html += '<div class="slider-val-badge" id="val_' + sid + '">' + val + '</div>';
+    html += '</div>';
+    html += '</div>';
+  }
+  html += '</div></div>';
+  document.getElementById("scenario-area").innerHTML = html;
+}
+
+function updateSlider(el) {
+  var sid = el.getAttribute("data-sid");
+  sliderData[sid] = parseInt(el.value);
+  document.getElementById("val_" + sid).textContent = el.value;
+}
+
+function next() {
+  if (cur < TOTAL - 1) {
+    cur++; renderScenario();
+    window.scrollTo({top:0, behavior:"smooth"});
+  } else { calcResult(); }
+}
+
+function prev() { if (cur > 0) { cur--; renderScenario(); } }
+
+function calcResult() {
+  var scores = {W:0,P:0,D:0,C:0,N:0,Dy:0};
+  var counts = {W:0,P:0,D:0,C:0,N:0,Dy:0};
+  for (var si = 0; si < SCENARIOS.length; si++) {
+    for (var ri = 0; ri < SCENARIOS[si].reactions.length; ri++) {
+      var sid = "sl_" + si + "_" + ri;
+      var val = sliderData[sid] !== undefined ? sliderData[sid] : 4;
+      var sk = SCENARIOS[si].reactions[ri].style;
+      scores[sk] += val; counts[sk]++;
+    }
+  }
+  var norm = {};
+  for (var k in scores) norm[k] = counts[k] > 0 ? Math.round(((scores[k]/counts[k])-1)/6*100) : 0;
+  var winner = "W", best = 0;
+  for (var k in norm) if (norm[k] > best) { best = norm[k]; winner = k; }
+  showResult(winner, norm);
+}
+
+function showResult(winner, norm) {
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("result").style.display = "block";
+  var t = STYLES[winner];
+  document.getElementById("ricon").innerHTML = t.icon;
+  document.getElementById("rtag").textContent = t.name;
+  document.getElementById("rname").textContent = t.name.split("(")[0].trim();
+  document.getElementById("rdesc").textContent = t.desc;
+  document.getElementById("rwatch").textContent = t.watch;
+  var wh = "";
+  for (var i = 0; i < t.when.length; i++)
+    wh += '<div class="when-item"><div class="wdot" style="background:' + t.color + '"></div>' + t.when[i] + '</div>';
+  document.getElementById("rwhen").innerHTML = wh;
+  var sorted = SKEYS.slice().sort(function(a,b){ return norm[b]-norm[a]; });
+  var bh = "";
+  for (var i = 0; i < sorted.length; i++) {
+    var sk = sorted[i];
+    bh += '<div class="brow"><div class="blabel">' + STYLES[sk].name.split("(")[0].trim() + '</div>';
+    bh += '<div class="bbg"><div class="bfill" style="width:' + norm[sk] + '%;background:' + STYLES[sk].color + '"></div></div>';
+    bh += '<div class="bpct">' + norm[sk] + '%</div></div>';
+  }
+  document.getElementById("rbars").innerHTML = bh;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function restart() {
+  cur = 0; sliderData = {};
+  document.getElementById("result").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  renderScenario(); window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function shareLink() {
+  var url = window.location.href;
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(showToast);
+  else { var e=document.createElement("textarea"); e.value=url; document.body.appendChild(e); e.select(); document.execCommand("copy"); document.body.removeChild(e); showToast(); }
+}
+
+function showToast() {
+  var t = document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(function(){ t.classList.remove("show"); }, 3000);
+}
+
+renderScenario();
+</script>
+</body>
+</html>
